@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Renura Health — design tokens                                      */
+/*  Warm, editorial clinical aesthetic: forest green + terracotta      */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Brand palette */
+  --color-cream: #faf6f0;
+  --color-cream-100: #f4ede2;
+  --color-sand: #ece2d3;
+
+  --color-forest: #1f3d2f;
+  --color-forest-600: #2c5240;
+  --color-forest-400: #4a7860;
+
+  --color-clay: #d97757;
+  --color-clay-600: #c15f40;
+  --color-clay-100: #f6e3da;
+
+  --color-sage: #8ba888;
+  --color-gold: #e0b04a;
+
+  --color-ink: #23201c;
+  --color-muted: #6b655c;
+
+  /* Semantic aliases */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-ink);
+  --color-primary: var(--color-forest);
+  --color-accent: var(--color-clay);
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* Radii */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.5rem;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 40px -12px rgba(31, 61, 47, 0.18);
+  --shadow-card: 0 4px 24px -8px rgba(35, 32, 28, 0.12);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  border-color: color-mix(in srgb, var(--color-forest) 12%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 78rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+  .bg-noise {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--color-forest) 8%, transparent) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+::selection {
+  background: var(--color-clay);
+  color: white;
+}
+
+/* Custom range slider (calculator) */
+input[type="range"].renura-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-sand);
+  outline: none;
+}
+input[type="range"].renura-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-clay);
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-out-expo);
+}
+input[type="range"].renura-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+input[type="range"].renura-range::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-clay);
+  border: 4px solid #fff;
+  cursor: pointer;
+}
